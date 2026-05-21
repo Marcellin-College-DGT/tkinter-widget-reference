@@ -16,39 +16,45 @@ HOW TO RUN
 import tkinter as tk
 from tkinter import ttk
 
-window = tk.Tk()
-window.title("Treeview demo")
-window.geometry("420x260")
 
-# show="headings" hides the empty first "tree" column so we just see our columns.
-tree = ttk.Treeview(window, columns=("name", "year", "grade"), show="headings", height=8)
-tree.pack(padx=10, pady=10, fill="x")
+def main():
+    root = tk.Tk()
+    root.title("Treeview demo")
+    root.geometry("420x260")
 
-# Set up the column headings and widths.
-tree.heading("name", text="Name")
-tree.heading("year", text="Year")
-tree.heading("grade", text="Grade")
-tree.column("year", width=60, anchor="center")
-tree.column("grade", width=70, anchor="center")
+    # show="headings" hides the empty first "tree" column so we just see our columns.
+    tree = ttk.Treeview(root, columns=("name", "year", "grade"), show="headings", height=8)
+    tree.pack(padx=10, pady=10, fill="x")
 
-# Some records to display. In a real program these might come from a file.
-records = [
-    ("Aroha", 12, "Excellence"),
-    ("Ben", 13, "Merit"),
-    ("Mere", 12, "Achieved"),
-]
-for row in records:
-    tree.insert("", tk.END, values=row)   # "" parent = top level
+    # Set up the column headings and widths.
+    tree.heading("name", text="Name")
+    tree.heading("year", text="Year")
+    tree.heading("grade", text="Grade")
+    tree.column("year", width=60, anchor="center")
+    tree.column("grade", width=70, anchor="center")
 
-selected = tk.Label(window, text="Click a row")
-selected.pack()
+    # Some records to display. In a real program these might come from a file.
+    records = [
+        ("Aroha", 12, "Excellence"),
+        ("Ben", 13, "Merit"),
+        ("Mere", 12, "Achieved"),
+    ]
+    for row in records:
+        tree.insert("", tk.END, values=row)   # "" parent = top level
 
-def on_select(event):
-    chosen = tree.selection()              # tuple of selected row ids (may be empty)
-    if chosen:
-        values = tree.item(chosen[0], "values")
-        selected.config(text=f"Selected: {values[0]} (Year {values[1]})")
+    selected = tk.Label(root, text="Click a row")
+    selected.pack()
 
-tree.bind("<<TreeviewSelect>>", on_select)
+    def on_select(event):
+        chosen = tree.selection()              # tuple of selected row ids (may be empty)
+        if chosen:
+            values = tree.item(chosen[0], "values")
+            selected.config(text=f"Selected: {values[0]} (Year {values[1]})")
 
-window.mainloop()
+    tree.bind("<<TreeviewSelect>>", on_select)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

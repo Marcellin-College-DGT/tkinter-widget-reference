@@ -12,27 +12,33 @@ HOW TO RUN
 
 import tkinter as tk
 
-window = tk.Tk()
-window.title("Radiobutton demo")
-window.geometry("300x220")
 
-tk.Label(window, text="Choose a size").pack(pady=(12, 4))
+def main():
+    root = tk.Tk()
+    root.title("Radiobutton demo")
+    root.geometry("300x220")
 
-# ONE shared variable for the whole group.
-size = tk.StringVar(value="Medium")
+    tk.Label(root, text="Choose a size").pack(pady=(12, 4))
 
-for label in ("Small", "Medium", "Large"):
-    tk.Radiobutton(window, text=label, variable=size, value=label).pack(anchor="w", padx=60)
+    # ONE shared variable for the whole group.
+    size = tk.StringVar(value="Medium")
 
-result = tk.Label(window, text="", fg="#0F6E56")
-result.pack(pady=12)
+    for label in ("Small", "Medium", "Large"):
+        tk.Radiobutton(root, text=label, variable=size, value=label).pack(anchor="w", padx=60)
 
-def confirm():
-    result.config(text=f"You picked: {size.get()}")
+    result = tk.Label(root, text="", fg="#0F6E56")
+    result.pack(pady=12)
 
-tk.Button(window, text="Confirm", command=confirm).pack()
+    def confirm():
+        result.config(text=f"You picked: {size.get()}")
 
-# You can also react the moment the choice changes, with no button:
-size.trace_add("write", lambda *args: result.config(text=f"Selected: {size.get()}"))
+    tk.Button(root, text="Confirm", command=confirm).pack()
 
-window.mainloop()
+    # You can also react the moment the choice changes, with no button:
+    size.trace_add("write", lambda *args: result.config(text=f"Selected: {size.get()}"))
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

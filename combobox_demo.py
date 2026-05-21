@@ -15,29 +15,35 @@ HOW TO RUN
 import tkinter as tk
 from tkinter import ttk          # Combobox lives in ttk, not the base tkinter
 
-window = tk.Tk()
-window.title("Combobox demo")
-window.geometry("300x180")
 
-tk.Label(window, text="Pick a subject").pack(pady=(16, 4))
+def main():
+    root = tk.Tk()
+    root.title("Combobox demo")
+    root.geometry("300x180")
 
-subject = tk.StringVar()
-combo = ttk.Combobox(
-    window,
-    textvariable=subject,
-    values=["Digital Technology", "Hospitality", "Materials Technology"],
-    state="readonly",            # readonly = choose from the list, no free typing
-)
-combo.pack(pady=4)
-combo.current(0)                 # select the first item to start
+    tk.Label(root, text="Pick a subject").pack(pady=(16, 4))
 
-result = tk.Label(window, text="", wraplength=260, fg="#0F6E56")
-result.pack(pady=16)
+    subject = tk.StringVar()
+    combo = ttk.Combobox(
+        root,
+        textvariable=subject,
+        values=["Digital Technology", "Hospitality", "Materials Technology"],
+        state="readonly",            # readonly = choose from the list, no free typing
+    )
+    combo.pack(pady=4)
+    combo.current(0)                 # select the first item to start
 
-# Fires when the user picks a different item.
-def on_pick(event):
-    result.config(text=f"You chose {subject.get()}")
+    result = tk.Label(root, text="", wraplength=260, fg="#0F6E56")
+    result.pack(pady=16)
 
-combo.bind("<<ComboboxSelected>>", on_pick)
+    # Fires when the user picks a different item.
+    def on_pick(event):
+        result.config(text=f"You chose {subject.get()}")
 
-window.mainloop()
+    combo.bind("<<ComboboxSelected>>", on_pick)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

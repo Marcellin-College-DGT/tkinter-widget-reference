@@ -36,34 +36,39 @@ class LabelledEntry(tk.Frame):
         return self.var.get()
 
 
-window = tk.Tk()
-window.title("Frame demo: pack + grid together")
-window.geometry("420x230")
+def main():
+    root = tk.Tk()
+    root.title("Frame demo: pack + grid together")
+    root.geometry("420x230")
 
-# --- TOOLBAR -- a single horizontal row, so PACK is the natural fit. ---------
-# This Frame is its own container; everything inside it is packed.
-toolbar = tk.Frame(window, bd=1, relief="solid")
-toolbar.pack(side="top", fill="x", padx=8, pady=8)
-for label in ("New", "Open", "Save"):
-    tk.Button(toolbar, text=label).pack(side="left", padx=2, pady=4)
+    # --- TOOLBAR -- a single horizontal row, so PACK is the natural fit. -----
+    # This Frame is its own container; everything inside it is packed.
+    toolbar = tk.Frame(root, bd=1, relief="solid")
+    toolbar.pack(side="top", fill="x", padx=8, pady=8)
+    for label in ("New", "Open", "Save"):
+        tk.Button(toolbar, text=label).pack(side="left", padx=2, pady=4)
 
-# --- FORM -- rows and columns, so GRID is the natural fit. -------------------
-# A DIFFERENT container, so using grid here does NOT clash with the packed
-# toolbar above. One manager per container is the whole trick.
-form = tk.Frame(window, padx=8, pady=8)
-form.pack(side="top", fill="both", expand=True)
+    # --- FORM -- rows and columns, so GRID is the natural fit. ---------------
+    # A DIFFERENT container, so using grid here does NOT clash with the packed
+    # toolbar above. One manager per container is the whole trick.
+    form = tk.Frame(root, padx=8, pady=8)
+    form.pack(side="top", fill="both", expand=True)
 
-first = LabelledEntry(form, "First:")
-first.grid(row=0, column=0, sticky="w", pady=3)     # the LabelledEntry frame is GRIDDED here
-last = LabelledEntry(form, "Last:")
-last.grid(row=1, column=0, sticky="w", pady=3)
+    first = LabelledEntry(form, "First:")
+    first.grid(row=0, column=0, sticky="w", pady=3)     # the LabelledEntry frame is GRIDDED here
+    last = LabelledEntry(form, "Last:")
+    last.grid(row=1, column=0, sticky="w", pady=3)
 
-result = tk.Label(form, text="", fg="#0F6E56")
-result.grid(row=2, column=0, sticky="w", pady=8)
+    result = tk.Label(form, text="", fg="#0F6E56")
+    result.grid(row=2, column=0, sticky="w", pady=8)
 
-def greet():
-    result.config(text=f"Kia ora, {first.value()} {last.value()}".strip())
+    def greet():
+        result.config(text=f"Kia ora, {first.value()} {last.value()}".strip())
 
-tk.Button(form, text="Greet", command=greet).grid(row=3, column=0, sticky="w")
+    tk.Button(form, text="Greet", command=greet).grid(row=3, column=0, sticky="w")
 
-window.mainloop()
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

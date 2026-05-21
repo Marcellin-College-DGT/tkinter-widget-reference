@@ -13,30 +13,36 @@ HOW TO RUN
 
 import tkinter as tk
 
-window = tk.Tk()
-window.title("Checkbutton demo")
-window.geometry("300x240")
 
-tk.Label(window, text="Pizza toppings").pack(pady=(12, 4))
+def main():
+    root = tk.Tk()
+    root.title("Checkbutton demo")
+    root.geometry("300x240")
 
-# A variable per option. BooleanVar holds True/False.
-toppings = {
-    "Cheese": tk.BooleanVar(value=True),
-    "Mushroom": tk.BooleanVar(),
-    "Pineapple": tk.BooleanVar(),
-}
+    tk.Label(root, text="Pizza toppings").pack(pady=(12, 4))
 
-for name, var in toppings.items():
-    tk.Checkbutton(window, text=name, variable=var).pack(anchor="w", padx=40)
+    # A variable per option. BooleanVar holds True/False.
+    toppings = {
+        "Cheese": tk.BooleanVar(value=True),
+        "Mushroom": tk.BooleanVar(),
+        "Pineapple": tk.BooleanVar(),
+    }
 
-result = tk.Label(window, text="", wraplength=260, fg="#0F6E56")
-result.pack(pady=10)
+    for name, var in toppings.items():
+        tk.Checkbutton(root, text=name, variable=var).pack(anchor="w", padx=40)
 
-def order():
-    # Read every variable and keep the ones that are ticked.
-    chosen = [name for name, var in toppings.items() if var.get()]
-    result.config(text="On your pizza: " + (", ".join(chosen) if chosen else "nothing!"))
+    result = tk.Label(root, text="", wraplength=260, fg="#0F6E56")
+    result.pack(pady=10)
 
-tk.Button(window, text="Order", command=order).pack()
+    def order():
+        # Read every variable and keep the ones that are ticked.
+        chosen = [name for name, var in toppings.items() if var.get()]
+        result.config(text="On your pizza: " + (", ".join(chosen) if chosen else "nothing!"))
 
-window.mainloop()
+    tk.Button(root, text="Order", command=order).pack()
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

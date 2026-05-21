@@ -12,30 +12,36 @@ HOW TO RUN
 
 import tkinter as tk
 
-window = tk.Tk()
-window.title("Text demo")
-window.geometry("420x300")
 
-textbox = tk.Text(window, height=10, width=48, wrap="word")
-textbox.pack(padx=10, pady=10)
-textbox.insert("1.0", "Type here. This is line 1, column 0.")  # "1.0" = line 1, col 0
+def main():
+    root = tk.Tk()
+    root.title("Text demo")
+    root.geometry("420x300")
 
-count = tk.Label(window, text="Words: 0")
-count.pack()
+    textbox = tk.Text(root, height=10, width=48, wrap="word")
+    textbox.pack(padx=10, pady=10)
+    textbox.insert("1.0", "Type here. This is line 1, column 0.")  # "1.0" = line 1, col 0
 
-def update_count(event=None):
-    # get() needs a start and end index. "1.0" to tk.END grabs everything.
-    content = textbox.get("1.0", tk.END)
-    count.config(text=f"Words: {len(content.split())}")
+    count = tk.Label(root, text="Words: 0")
+    count.pack()
 
-# <KeyRelease> fires after each keypress, so the count stays current.
-textbox.bind("<KeyRelease>", update_count)
+    def update_count(event=None):
+        # get() needs a start and end index. "1.0" to tk.END grabs everything.
+        content = textbox.get("1.0", tk.END)
+        count.config(text=f"Words: {len(content.split())}")
 
-def clear():
-    textbox.delete("1.0", tk.END)   # delete from start to end
+    # <KeyRelease> fires after each keypress, so the count stays current.
+    textbox.bind("<KeyRelease>", update_count)
+
+    def clear():
+        textbox.delete("1.0", tk.END)   # delete from start to end
+        update_count()
+
+    tk.Button(root, text="Clear", command=clear).pack(pady=6)
+
     update_count()
+    root.mainloop()
 
-tk.Button(window, text="Clear", command=clear).pack(pady=6)
 
-update_count()
-window.mainloop()
+if __name__ == "__main__":
+    main()

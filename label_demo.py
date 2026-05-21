@@ -1,5 +1,5 @@
 """
-label_demo.py  --  tkinter widget reference  --  Year 12 & 13 Digital Technology
+label_demo.py  --  tkinter widget reference  --  Year 12 & 13
 
 WHAT THIS DEMONSTRATES
     A Label is an OUTPUT widget. It shows text (or an image) to the user.
@@ -13,60 +13,44 @@ WHAT THIS DEMONSTRATES
     that updates a Label every time a Button is pressed.
 
 HOW TO RUN
-    Open this file in VS Code (with the Python extension installed) and press Run,
-    or from a terminal:  python label_demo.py
-    tkinter comes built in with Python -- there is nothing extra to install.
+    python label_demo.py
 """
 
 import tkinter as tk
 
 
 def main():
-    # The main window. Every tkinter program has exactly one of these.
-    window = tk.Tk()
-    window.title("Label demo")
-    window.geometry("320x200")  # width x height in pixels
+    root = tk.Tk()
+    root.title("Label demo")
+    root.geometry("320x200")
 
-    # --- A plain, static Label -------------------------------------------------
-    # The simplest possible Label: just shows fixed text.
-    title = tk.Label(window, text="Labels show information to the user")
-    title.pack(pady=(16, 4))
+    # --- A plain, static Label ---------------------------------------------
+    tk.Label(root, text="Labels show information to the user").pack(pady=(16, 4))
 
-    # --- A Label whose text can change at run time -----------------------------
-    # We link the Label to a StringVar. When we change the variable, the Label
-    # redraws itself automatically -- we never touch the Label again directly.
+    # --- A Label whose text can change at run time -------------------------
+    # We link the Label to a StringVar. Change the variable and the Label
+    # redraws itself -- we never touch the Label again directly.
     count = 0
     status_var = tk.StringVar()
     status_var.set(f"Clicks: {count}")
+    tk.Label(root, textvariable=status_var, font=("TkDefaultFont", 14)).pack(pady=8)
 
-    status = tk.Label(window, textvariable=status_var, font=("TkDefaultFont", 14))
-    status.pack(pady=8)
-
-    # --- The event handler -----------------------------------------------------
-    # A Button does not change a Label by itself. We write a function that does
-    # the work, and the Button calls it. Updating the StringVar is what makes the
-    # Label change on screen.
+    # --- The event handler -------------------------------------------------
     def add_click():
-        nonlocal count          # we are changing the 'count' from the enclosing scope
+        nonlocal count          # we are changing 'count' from the enclosing scope
         count += 1
         status_var.set(f"Clicks: {count}")
 
-    # The Button's command= is set to OUR function (no brackets -- we are passing
-    # the function, not calling it).
-    button = tk.Button(window, text="Click me", command=add_click)
-    button.pack(pady=8)
+    # command= is set to OUR function (no brackets -- we pass it, not call it).
+    tk.Button(root, text="Click me", command=add_click).pack(pady=8)
 
-    # --- A Label that wraps long text ------------------------------------------
+    # --- A Label that wraps long text --------------------------------------
     # By default a Label does NOT wrap. wraplength (in pixels) forces it to.
-    note = tk.Label(
-        window,
-        text="Tip: a Label will not wrap long text on its own -- set wraplength.",
-        wraplength=280,
-        fg="#5F5E5A",
-    )
-    note.pack(pady=(8, 16))
+    tk.Label(root, wraplength=280, fg="#5F5E5A",
+             text="Tip: a Label will not wrap long text on its own -- set wraplength."
+             ).pack(pady=(8, 16))
 
-    window.mainloop()  # hands control to tkinter; the window stays open until closed
+    root.mainloop()
 
 
 if __name__ == "__main__":

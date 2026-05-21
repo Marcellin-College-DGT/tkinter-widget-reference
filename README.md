@@ -26,6 +26,19 @@ it maps onto the NCEA achievement standards (AS91896 at Level 2, AS91906 at Leve
   Canvas.
 - **Capstone** — `capstone_app.py`.
 
+## Conventions used throughout
+
+So ākonga see one consistent style everywhere:
+
+- The main window is always named `root` (the usual convention they will meet elsewhere).
+- Every demo wraps its code in a function and runs it under `if __name__ == "__main__":`.
+- Every code example on the reference page is a complete program — import, window,
+  and `mainloop()` included — so it can be copied, pasted, and run as-is.
+- All file operations use `encoding="utf-8"` so te reo Māori macrons (ā ē ī ō ū)
+  read and write correctly. The reference snippets show this too.
+- Widgets that exist in both the classic `tk` and themed `ttk` families include a
+  short tk-vs-ttk comparison; `tk`-only and `ttk`-only widgets are flagged as such.
+
 ## Running the demos
 
 tkinter ships with Python, so there is nothing extra to install. Open a demo in
@@ -34,6 +47,11 @@ VS Code with the Python extension and press Run, or from a terminal:
 ```
 python entry_demo.py
 ```
+
+Some demos (Entry/Listbox Level 3, the dialogs demo, and the capstone) write to
+files — `names.txt`, `todo.txt`, `records.json` — in the folder you run them from.
+That is expected. The included `.gitignore` keeps those generated files out of the
+repository.
 
 ## Publishing the reference with GitHub Pages
 

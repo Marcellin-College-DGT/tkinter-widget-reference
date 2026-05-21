@@ -14,33 +14,39 @@ HOW TO RUN
 
 import tkinter as tk
 
-window = tk.Tk()                      # 1. THE WINDOW
-window.title("Foundations")
-window.geometry("360x200")
 
-# 3. CONTROL VARIABLES -- the GUI redraws automatically when these change.
-name_var = tk.StringVar()             # holds text
-count_var = tk.IntVar(value=0)        # holds a whole number
+def main():
+    root = tk.Tk()                        # 1. THE MAIN WINDOW (named root by convention)
+    root.title("Foundations")
+    root.geometry("360x200")
 
-# 2. GRID LAYOUT -- row/column placement. Cleaner than pack for forms.
-tk.Label(window, text="Name:").grid(row=0, column=0, sticky="e", padx=6, pady=8)
-entry = tk.Entry(window, textvariable=name_var)
-entry.grid(row=0, column=1, padx=6, pady=8)
+    # 3. CONTROL VARIABLES -- the GUI redraws automatically when these change.
+    name_var = tk.StringVar()             # holds text
+    count_var = tk.IntVar(value=0)        # holds a whole number
 
-greeting = tk.Label(window, text="Type your name and press Enter")
-greeting.grid(row=1, column=0, columnspan=2, pady=4)
+    # 2. GRID LAYOUT -- row/column placement. Cleaner than pack for forms.
+    tk.Label(root, text="Name:").grid(row=0, column=0, sticky="e", padx=6, pady=8)
+    entry = tk.Entry(root, textvariable=name_var)
+    entry.grid(row=0, column=1, padx=6, pady=8)
 
-counter = tk.Label(window, textvariable=count_var, font=("TkDefaultFont", 16))
-counter.grid(row=2, column=0, columnspan=2, pady=4)
+    greeting = tk.Label(root, text="Type your name and press Enter")
+    greeting.grid(row=1, column=0, columnspan=2, pady=4)
 
-tk.Button(window, text="Count +1",
-          command=lambda: count_var.set(count_var.get() + 1)
-          ).grid(row=3, column=0, columnspan=2, pady=6)
+    counter = tk.Label(root, textvariable=count_var, font=("TkDefaultFont", 16))
+    counter.grid(row=2, column=0, columnspan=2, pady=4)
 
-# 4. EVENT BINDING -- run a function when the user presses Enter in the Entry.
-def show_greeting(event):
-    greeting.config(text=f"Kia ora, {name_var.get()}!")
+    tk.Button(root, text="Count +1",
+              command=lambda: count_var.set(count_var.get() + 1)
+              ).grid(row=3, column=0, columnspan=2, pady=6)
 
-entry.bind("<Return>", show_greeting)
+    # 4. EVENT BINDING -- run a function when the user presses Enter in the Entry.
+    def show_greeting(event):
+        greeting.config(text=f"Kia ora, {name_var.get()}!")
 
-window.mainloop()                     # hands control to tkinter
+    entry.bind("<Return>", show_greeting)
+
+    root.mainloop()                       # hands control to tkinter
+
+
+if __name__ == "__main__":
+    main()

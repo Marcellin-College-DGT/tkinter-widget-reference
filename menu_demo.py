@@ -3,7 +3,7 @@ menu_demo.py  --  tkinter widget reference  --  Year 13 (Level 3)
 
 WHAT THIS DEMONSTRATES
     A Menu builds the menu bar across the top of a window.
-        - a menubar attached to the window with window.config(menu=...)
+        - a menubar attached to the window with root.config(menu=...)
         - a File menu with commands, a separator, and Exit
         - menus naturally open dialogs and other windows
 
@@ -14,36 +14,42 @@ HOW TO RUN
 import tkinter as tk
 from tkinter import messagebox
 
-window = tk.Tk()
-window.title("Menu demo")
-window.geometry("360x200")
 
-status = tk.Label(window, text="Use the menu bar above", font=("TkDefaultFont", 13))
-status.pack(pady=40)
+def main():
+    root = tk.Tk()
+    root.title("Menu demo")
+    root.geometry("360x200")
 
-def new_file():
-    status.config(text="New file")
+    status = tk.Label(root, text="Use the menu bar above", font=("TkDefaultFont", 13))
+    status.pack(pady=40)
 
-def about():
-    messagebox.showinfo("About", "A menu demo.")
+    def new_file():
+        status.config(text="New file")
 
-# 1. Make the menu bar.
-menubar = tk.Menu(window)
+    def about():
+        messagebox.showinfo("About", "A menu demo.")
 
-# 2. Make a drop-down menu and add items to it. tearoff=0 removes the dotted line.
-file_menu = tk.Menu(menubar, tearoff=0)
-file_menu.add_command(label="New", command=new_file)
-file_menu.add_separator()
-file_menu.add_command(label="Exit", command=window.quit)
+    # 1. Make the menu bar.
+    menubar = tk.Menu(root)
 
-help_menu = tk.Menu(menubar, tearoff=0)
-help_menu.add_command(label="About", command=about)
+    # 2. Make a drop-down menu and add items to it. tearoff=0 removes the dotted line.
+    file_menu = tk.Menu(menubar, tearoff=0)
+    file_menu.add_command(label="New", command=new_file)
+    file_menu.add_separator()
+    file_menu.add_command(label="Exit", command=root.quit)
 
-# 3. Add the drop-downs to the bar as cascades.
-menubar.add_cascade(label="File", menu=file_menu)
-menubar.add_cascade(label="Help", menu=help_menu)
+    help_menu = tk.Menu(menubar, tearoff=0)
+    help_menu.add_command(label="About", command=about)
 
-# 4. Attach the bar to the window.
-window.config(menu=menubar)
+    # 3. Add the drop-downs to the bar as cascades.
+    menubar.add_cascade(label="File", menu=file_menu)
+    menubar.add_cascade(label="Help", menu=help_menu)
 
-window.mainloop()
+    # 4. Attach the bar to the window.
+    root.config(menu=menubar)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

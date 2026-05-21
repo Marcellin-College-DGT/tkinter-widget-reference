@@ -13,23 +13,29 @@ HOW TO RUN
 
 import tkinter as tk
 
-window = tk.Tk()
-window.title("Scrollbar demo")
-window.geometry("280x240")
 
-# Put the list and its scrollbar in a frame so they sit neatly together.
-frame = tk.Frame(window)
-frame.pack(fill="both", expand=True, padx=10, pady=10)
+def main():
+    root = tk.Tk()
+    root.title("Scrollbar demo")
+    root.geometry("280x240")
 
-scrollbar = tk.Scrollbar(frame, orient="vertical")
-listbox = tk.Listbox(frame, yscrollcommand=scrollbar.set)   # list -> scrollbar
-scrollbar.config(command=listbox.yview)                     # scrollbar -> list
+    # Put the list and its scrollbar in a frame so they sit neatly together.
+    frame = tk.Frame(root)
+    frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-scrollbar.pack(side="right", fill="y")
-listbox.pack(side="left", fill="both", expand=True)
+    scrollbar = tk.Scrollbar(frame, orient="vertical")
+    listbox = tk.Listbox(frame, yscrollcommand=scrollbar.set)   # list -> scrollbar
+    scrollbar.config(command=listbox.yview)                     # scrollbar -> list
 
-# Add enough items to overflow the box so the scrollbar is needed.
-for i in range(1, 51):
-    listbox.insert(tk.END, f"Item {i}")
+    scrollbar.pack(side="right", fill="y")
+    listbox.pack(side="left", fill="both", expand=True)
 
-window.mainloop()
+    # Add enough items to overflow the box so the scrollbar is needed.
+    for i in range(1, 51):
+        listbox.insert(tk.END, f"Item {i}")
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
