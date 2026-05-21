@@ -7,6 +7,8 @@ it maps onto the NCEA achievement standards (AS91896 at Level 2, AS91906 at Leve
 ## What's here
 
 - `index.html` — the reference page students read (publish this with GitHub Pages).
+- `styles.css` — the styling for the page. It must sit beside `index.html`; if the
+  two are separated the page loads unstyled.
 - One runnable demo per widget. Each is standalone and commented. Demos for
   interactive widgets include both a Level 2 version (runs by default) and a
   Level 3 class-based version with file persistence, switchable by one line at
