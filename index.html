@@ -13,6 +13,7 @@
     --paper:#FBF7EF; --surface:#FFFFFF; --ink:#211C16; --muted:#6B655C; --faint:#9B958A;
     --rule:#E6DECF; --accent:#0F6E56; --accent-soft:#E1F1EB;
     --l2-bg:#E1F1EB; --l2-ink:#0B5040; --l3-bg:#FAEEDA; --l3-ink:#7A4A0B;
+    --found-bg:#EFEDE6; --found-ink:#55504A;
     --code-bg:#FBF8F1; --radius:10px;
   }
   *{box-sizing:border-box}
@@ -24,35 +25,31 @@
   code{font-family:"JetBrains Mono",monospace;font-size:0.86em;
     background:var(--accent-soft);color:var(--accent);padding:1px 5px;border-radius:5px}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;display:grid;
-    grid-template-columns:230px 1fr;gap:48px}
+    grid-template-columns:236px 1fr;gap:48px}
 
-  /* Masthead */
   header.top{border-bottom:1px solid var(--rule);background:var(--surface)}
   .top-inner{max-width:1080px;margin:0 auto;padding:30px 24px 26px}
   .kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--accent);margin:0 0 8px}
   h1{font-family:"Fraunces",serif;font-weight:600;font-size:40px;line-height:1.05;
     margin:0;letter-spacing:-0.01em}
-  .sub{color:var(--muted);font-size:19px;margin:10px 0 0}
-  .draft{display:inline-block;margin-top:16px;font-family:"JetBrains Mono",monospace;
-    font-size:12px;background:var(--l3-bg);color:var(--l3-ink);
-    padding:5px 11px;border-radius:999px}
+  .sub{color:var(--muted);font-size:19px;margin:10px 0 0;max-width:60ch}
 
-  /* Side nav */
-  nav.toc{position:sticky;top:24px;align-self:start;font-size:15px;line-height:1.5}
+  nav.toc{position:sticky;top:24px;align-self:start;font-size:15px;line-height:1.5;
+    max-height:calc(100vh - 48px);overflow:auto}
   nav.toc .navlabel{font-family:"JetBrains Mono",monospace;font-size:11px;
     letter-spacing:.12em;text-transform:uppercase;color:var(--faint);
-    margin:18px 0 8px;display:block}
-  nav.toc a{display:block;color:var(--ink);border:0;padding:3px 0}
+    margin:18px 0 7px;display:block}
+  nav.toc a{display:block;color:var(--ink);border:0;padding:2px 0}
   nav.toc a:hover{color:var(--accent)}
   nav.toc .tier-tag{font-family:"JetBrains Mono",monospace;font-size:10px;
     padding:1px 6px;border-radius:999px;margin-left:6px;vertical-align:1px}
   .t2{background:var(--l2-bg);color:var(--l2-ink)}
   .t3{background:var(--l3-bg);color:var(--l3-ink)}
+  .tf{background:var(--found-bg);color:var(--found-ink)}
 
   main{min-width:0;padding:40px 0 80px}
 
-  /* Intro */
   .intro p{margin:0 0 16px;max-width:62ch}
   .legend{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);
     padding:20px 24px;margin:24px 0 8px}
@@ -61,16 +58,23 @@
   .legend li{margin:5px 0;font-size:16px;color:var(--muted)}
   .legend li b{color:var(--ink);font-weight:500}
 
-  /* Widget sections */
-  section.widget{border-top:1px solid var(--rule);padding-top:40px;margin-top:48px}
-  .whead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
-  .wname{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:30px;
+  .band{font-family:"Fraunces",serif;font-weight:600;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:60px 0 0;
+    padding-bottom:8px;border-bottom:2px solid var(--accent)}
+  .band:first-of-type{margin-top:40px}
+  .band .bandsub{font-family:"Newsreader",serif;font-weight:400;font-size:15px;
+    letter-spacing:0;text-transform:none;color:var(--muted);margin-left:10px}
+
+  section.widget{border-top:1px solid var(--rule);padding-top:36px;margin-top:36px}
+  section.widget:first-of-type{border-top:0}
+  .whead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .wname{font-family:"JetBrains Mono",monospace;font-weight:600;font-size:27px;
     color:var(--ink);letter-spacing:-0.01em}
   .badge{font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 10px;
     border-radius:999px}
-  .one-line{color:var(--muted);font-size:19px;margin:2px 0 22px}
+  .one-line{color:var(--muted);font-size:19px;margin:2px 0 20px}
 
-  .block{margin:0 0 22px}
+  .block{margin:0 0 20px}
   .block .lbl{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;
     text-transform:uppercase;color:var(--accent);margin:0 0 6px;
     border-left:2px solid var(--accent);padding-left:9px}
@@ -83,25 +87,26 @@
     margin:6px 0 0;padding:0;overflow:auto}
   pre code{display:block;background:none;color:var(--ink);padding:16px 18px;
     font-size:14.5px;line-height:1.6;border-radius:0}
-  .filetag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--faint);
-    background:var(--surface);border:1px solid var(--rule);border-bottom:0;
-    display:inline-block;padding:4px 10px;border-radius:6px 6px 0 0;margin-bottom:-1px}
 
-  /* L3 lift box */
   .lift{background:var(--l3-bg);border:1px solid #EBD9B5;border-radius:var(--radius);
     padding:18px 22px;margin:8px 0 0}
   .lift .liftlbl{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.08em;
     text-transform:uppercase;color:var(--l3-ink);margin:0 0 8px;font-weight:500}
   .lift p{color:#5C4413;max-width:62ch}
   .lift pre{background:#FFFDF8;border-color:#EBD9B5}
+  .counts{font-size:15px;color:var(--l3-ink);background:var(--l3-bg);
+    border-radius:var(--radius);padding:10px 16px;margin-top:6px}
 
-  /* run / demo links */
   .demo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
     background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);
     padding:12px 16px;margin:8px 0 0;font-size:15px;color:var(--muted)}
   .demo .runtag{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent)}
 
-  /* hljs tokens, tuned to the palette */
+  .capstone{background:var(--surface);border:1px solid var(--rule);
+    border-radius:var(--radius);padding:26px 28px;margin-top:36px}
+  .capstone h2{font-family:"Fraunces",serif;font-weight:600;font-size:24px;margin:0 0 6px}
+  .capstone ul{max-width:62ch}
+
   .hljs-comment{color:#9B958A;font-style:italic}
   .hljs-keyword,.hljs-built_in{color:#0F6E56}
   .hljs-string{color:#B5651D}
@@ -115,15 +120,16 @@
 
   @media (max-width:820px){
     .wrap{grid-template-columns:1fr;gap:0}
-    nav.toc{position:static;border-bottom:1px solid var(--rule);padding-bottom:16px;margin-top:24px}
+    nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);
+      padding-bottom:16px;margin-top:24px}
     main{padding-top:24px}
     h1{font-size:32px}
   }
   @media print{
     body{background:#fff;font-size:12pt}
-    nav.toc,.draft{display:none}
+    nav.toc{display:none}
     .wrap{display:block;max-width:none}
-    section.widget{page-break-inside:avoid}
+    section.widget,.capstone{page-break-inside:avoid}
     a{color:var(--ink);border:0}
   }
 </style>
@@ -135,7 +141,6 @@
     <p class="kicker">Digital Technology · Year 12 &amp; 13</p>
     <h1>tkinter widget reference</h1>
     <p class="sub">A guide to the building blocks of a Python GUI — what each widget is for, how to use it, and how it earns NCEA credit.</p>
-    <span class="draft">Draft · pattern sample (Label · Entry · Listbox)</span>
   </div>
 </header>
 
@@ -145,17 +150,44 @@
     <span class="navlabel">Start here</span>
     <a href="#how">How to use this guide</a>
     <a href="#run">Running the demos</a>
-    <span class="navlabel">Widgets in this draft</span>
-    <a href="#label">Label<span class="tier-tag t2">L2</span></a>
-    <a href="#entry">Entry<span class="tier-tag t2">L2</span><span class="tier-tag t3">L3</span></a>
-    <a href="#listbox">Listbox<span class="tier-tag t2">L2</span><span class="tier-tag t3">L3</span></a>
+
+    <span class="navlabel">Foundations</span>
+    <a href="#window">The window + mainloop</a>
+    <a href="#layout">pack &amp; grid</a>
+    <a href="#vars">StringVar / IntVar</a>
+    <a href="#binding">Event binding</a>
+
+    <span class="navlabel">Core widgets · L2</span>
+    <a href="#label">Label</a>
+    <a href="#button">Button</a>
+    <a href="#entry">Entry</a>
+    <a href="#text">Text</a>
+    <a href="#frame">Frame</a>
+    <a href="#checkbutton">Checkbutton</a>
+    <a href="#radiobutton">Radiobutton</a>
+    <a href="#combobox">ttk.Combobox</a>
+    <a href="#listbox">Listbox</a>
+    <a href="#scale">Scale / Spinbox</a>
+    <a href="#messagebox">messagebox</a>
+    <a href="#filedialog">filedialog</a>
+
+    <span class="navlabel">Year 13 · L3</span>
+    <a href="#toplevel">Toplevel</a>
+    <a href="#menu">Menu</a>
+    <a href="#treeview">ttk.Treeview</a>
+    <a href="#scrollbar">Scrollbar</a>
+    <a href="#notebook">ttk.Notebook</a>
+    <a href="#canvas">Canvas</a>
+
+    <span class="navlabel">Putting it together</span>
+    <a href="#capstone">Capstone app</a>
   </nav>
 
   <main>
     <div class="intro" id="how">
-      <p>This guide is a reference you can return to while you build. Each widget gets its own page with the same layout, so once you learn the shape you can scan any page fast. Read the prose, run the matching demo file, then change it and see what happens — the demos are where the real learning is.</p>
+      <p>This guide is a reference you can return to while you build. Every widget gets a page with the same layout, so once you learn the shape you can scan any page fast. Read the prose, run the matching demo file, then change it and see what happens — the demos are where the real learning is.</p>
 
-      <p><b>Where the levels sit.</b> Everything in the core pages is reachable at <b>Level 2</b> (AS91896). For Level 2, two of the named advanced techniques are <i>responding to events generated by a GUI</i> and <i>using a non-core library</i> — and a tkinter program gives you both at once. Pages with an interactive widget also carry a <b>Level 3 lift</b> (AS91906): the same idea moved into a class you define, with file persistence and validation. That single step covers several of the named complex techniques together — a GUI, your own class, and reading/writing to a file.</p>
+      <p><b>Where the levels sit.</b> Everything in the core pages is reachable at <b>Level 2</b> (AS91896). Two of the named advanced techniques there are <i>responding to events generated by a GUI</i> and <i>using a non-core library</i> — and a tkinter program gives you both at once. Pages with an interactive widget also carry a <b>Level 3 lift</b> (AS91906): the same idea moved into a class you define, with file persistence and validation. The Year 13 widgets go further again, and the capstone shows several complex techniques working together.</p>
 
       <div class="legend">
         <h3>How each page is laid out</h3>
@@ -173,135 +205,159 @@
     </div>
 
     <div class="intro" id="run" style="margin-top:32px">
-      <p><b>Running the demos.</b> Each widget links to a Python file. Open it in VS Code with the Python extension installed and press Run, or from a terminal type <code>python entry_demo.py</code>. tkinter ships with Python, so there is nothing extra to install. The files live in the class repository — download them as a ZIP or clone the repo:</p>
-      <p><a href="https://github.com/Marcellin-College-DGT/tkinter-widget-reference">github.com/Marcellin-College-DGT/tkinter-widget-reference</a> &nbsp;·&nbsp;</p>
+      <p><b>Running the demos.</b> Each widget links to a Python file. Open it in VS Code with the Python extension installed and press Run, or from a terminal type <code>python entry_demo.py</code>. tkinter ships with Python, so there is nothing extra to install. The files live in this repository — download them as a ZIP or clone the repo:</p>
+      <p><a href="https://github.com/your-school/tkinter-widget-reference">github.com/your-school/tkinter-widget-reference</a> &nbsp;·&nbsp; <span class="nots">(replace with the real repo link once it is set up)</span></p>
     </div>
 
-    <!-- ============================ LABEL ============================ -->
-    <section class="widget" id="label">
-      <div class="whead">
-        <span class="wname">Label</span>
-        <span class="badge t2">Year 12 · L2</span>
-      </div>
-      <p class="one-line">Shows a piece of text (or an image) to the user.</p>
+    <!-- ========================= FOUNDATIONS ========================= -->
+    <p class="band">Foundations<span class="bandsub">the machinery every widget assumes</span></p>
 
-      <div class="block">
-        <p class="lbl">What it is</p>
-        <p>A display area for a short piece of text or an image. A Label shows information <i>to</i> the user — it does not collect anything <i>from</i> them.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">When to reach for it</p>
-        <p>A title at the top of a window, a prompt sitting next to an <code>Entry</code>, a status line, or the result after a calculation. <span class="nots">Not for input — if the user needs to type, use <code>Entry</code> or <code>Text</code>; for a clickable action use <code>Button</code>.</span></p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Minimal example</p>
+    <section class="widget" id="window">
+      <div class="whead"><span class="wname">The window + mainloop</span><span class="badge tf">Foundations</span></div>
+      <p class="one-line">Every program has one main window, and one line that keeps it running.</p>
+      <div class="block"><p class="lbl">What it is</p>
+        <p>The main window is created with <code>tk.Tk()</code>. The last line of the program is always <code>window.mainloop()</code>, which hands control to tkinter and keeps the window open and responding to the user.</p></div>
+      <div class="block"><p class="lbl">Why it matters</p>
+        <p>Nothing appears until there is a window, and nothing reacts until <code>mainloop()</code> runs. Every widget is created "inside" the window (or inside a Frame that is inside the window).</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
         <pre><code class="language-python">import tkinter as tk
 
 window = tk.Tk()
-label = tk.Label(window, text="Kia ora!")
-label.pack()
-window.mainloop()</code></pre>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Key options</p>
-        <ul>
-          <li><code>text</code> — the words to show.</li>
-          <li><code>textvariable</code> — link a <code>StringVar</code> so the Label updates itself when the variable changes.</li>
-          <li><code>font</code>, <code>fg</code> (text colour), <code>bg</code> (background).</li>
-          <li><code>wraplength</code> — width in pixels at which long text wraps.</li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Events &amp; value</p>
-        <p>A Label is output-only — it does not respond to events. You change what it shows in one of two ways: <code>label.config(text="...")</code>, or link a <code>StringVar</code> and call <code>var.set("...")</code>. There is nothing to "read" from a Label; the point is updating it.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Common gotcha</p>
-        <p>To update a Label live you must use <code>.config()</code> or a <code>StringVar</code> — reassigning the ordinary Python variable does nothing to the screen. And a Label will not wrap long text on its own: set <code>wraplength</code> or it runs off the edge.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Practice task</p>
-        <p>Make a window with a Label reading <code>Clicks: 0</code> and a Button. Each click should increase the number shown in the Label.</p>
-      </div>
-
-      <div class="demo">
-        <span class="runtag">▶ run</span>
-        <span>See it working in <a href="./label_demo.py">label_demo.py</a></span>
-      </div>
-
-      <p class="nots" style="margin-top:18px;font-size:15px;max-width:62ch">No Level 3 lift: a Label has no events and is not itself a complex technique. Its role at Level 3 is as the output surface for a richer program — showing computed results, status, and state.</p>
+window.title("My program")
+window.geometry("320x200")   # width x height in pixels
+window.mainloop()            # always the last line</code></pre></div>
+      <div class="block"><p class="lbl">Key points</p>
+        <ul><li><code>tk.Tk()</code> — call it once, for the one main window.</li>
+          <li><code>.title(...)</code> and <code>.geometry("WxH")</code> set the title bar and size.</li>
+          <li><code>mainloop()</code> goes last and runs until the window is closed.</li></ul></div>
+      <div class="block"><p class="lbl">Common gotcha</p>
+        <p>Forget <code>mainloop()</code> and the program runs and exits instantly with no window. For a <i>second</i> window use <code>Toplevel</code>, not another <code>tk.Tk()</code>.</p></div>
     </section>
 
-    <!-- ============================ ENTRY ============================ -->
-    <section class="widget" id="entry">
-      <div class="whead">
-        <span class="wname">Entry</span>
-        <span class="badge t2">Year 12 · L2</span>
-        <span class="badge t3">Level 3 lift</span>
-      </div>
-      <p class="one-line">A single-line box the user types into.</p>
+    <section class="widget" id="layout">
+      <div class="whead"><span class="wname">pack &amp; grid</span><span class="badge tf">Foundations</span></div>
+      <p class="one-line">Layout managers decide where each widget sits.</p>
+      <div class="block"><p class="lbl">What it is</p>
+        <p>A widget is invisible until you "manage" its position. <code>pack</code> stacks widgets (top, bottom, left, or right); <code>grid</code> places them in rows and columns, which suits forms.</p></div>
+      <div class="block"><p class="lbl">Why it matters</p>
+        <p>Choosing the right manager makes a layout tidy and predictable. Most programs use <code>grid</code> for forms and <code>pack</code> for simple stacks.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">tk.Label(window, text="Name:").grid(row=0, column=0)
+tk.Entry(window).grid(row=0, column=1)
+tk.Button(window, text="OK").grid(row=1, column=0, columnspan=2)</code></pre></div>
+      <div class="block"><p class="lbl">Key points</p>
+        <ul><li><code>pack(side=, fill=, expand=, padx=, pady=)</code></li>
+          <li><code>grid(row=, column=, columnspan=, sticky=, padx=, pady=)</code></li>
+          <li><code>sticky="ew"</code> stretches a widget across its cell.</li></ul></div>
+      <div class="block"><p class="lbl">Common gotcha</p>
+        <p>Do not mix <code>pack</code> and <code>grid</code> in the same container — the program will hang. Use one manager per container. (You can <code>pack</code> a Frame, then <code>grid</code> inside it.)</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>Layout, variables and binding together in <a href="./foundations_demo.py">foundations_demo.py</a></span></div>
+    </section>
 
-      <div class="block">
-        <p class="lbl">What it is</p>
-        <p>A single-line text box the user types into. It is the most common way a tkinter program takes input from the user.</p>
-      </div>
+    <section class="widget" id="vars">
+      <div class="whead"><span class="wname">StringVar / IntVar</span><span class="badge tf">Foundations</span></div>
+      <p class="one-line">Special variables the GUI watches and stays in sync with.</p>
+      <div class="block"><p class="lbl">What it is</p>
+        <p>Control variables that tkinter keeps linked to a widget. Change the variable and the widget redraws; the user edits the widget and the variable updates. They are the clean way to read and set widget values.</p></div>
+      <div class="block"><p class="lbl">Why it matters</p>
+        <p>They save you reaching into widgets directly, and they let two widgets share one value — a Label can mirror an Entry just by sharing its variable.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">name = tk.StringVar()
+tk.Entry(window, textvariable=name).pack()
+tk.Label(window, textvariable=name).pack()   # mirrors the Entry live</code></pre></div>
+      <div class="block"><p class="lbl">Key points</p>
+        <ul><li><code>tk.StringVar()</code>, <code>tk.IntVar(value=0)</code>, <code>tk.BooleanVar()</code>.</li>
+          <li><code>var.get()</code> reads, <code>var.set(...)</code> writes.</li>
+          <li>Attach with <code>textvariable=</code> (Entry/Label) or <code>variable=</code> (Checkbutton/Radiobutton).</li></ul></div>
+      <div class="block"><p class="lbl">Common gotcha</p>
+        <p><code>StringVar.get()</code> returns a <b>string</b> even for numbers; <code>IntVar.get()</code> returns an int. Choose the variable type that matches the data.</p></div>
+    </section>
 
-      <div class="block">
-        <p class="lbl">When to reach for it</p>
-        <p>Whenever you need one line of text or a number — a name, a search term, a score. <span class="nots">For several lines use <code>Text</code>; if the user should pick from fixed options use <code>Combobox</code> or <code>Radiobutton</code> rather than making them type.</span></p>
-      </div>
+    <section class="widget" id="binding">
+      <div class="whead"><span class="wname">Event binding</span><span class="badge tf">Foundations</span></div>
+      <p class="one-line">Making the program react to the user.</p>
+      <div class="block"><p class="lbl">What it is</p>
+        <p>Two ways to run your code in response to the user. Buttons use <code>command=</code>; other widgets, keys, and the mouse use <code>.bind("&lt;event&gt;", handler)</code>.</p></div>
+      <div class="block"><p class="lbl">Why it matters</p>
+        <p>This is the heart of the Level 2 standard — <i>responding to events generated by a GUI</i>. Without it a window just sits there.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">def on_enter(event):
+    print("You pressed Enter")
 
-      <div class="block">
-        <p class="lbl">Minimal example</p>
+entry.bind("&lt;Return&gt;", on_enter)
+tk.Button(window, text="Go", command=lambda: print("clicked")).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key points</p>
+        <ul><li><code>command=my_func</code> — pass the function (no brackets).</li>
+          <li><code>widget.bind("&lt;Return&gt;", handler)</code> — handler receives an <code>event</code>.</li>
+          <li>Virtual events like <code>&lt;&lt;ListboxSelect&gt;&gt;</code> fire on selection changes.</li></ul></div>
+      <div class="block"><p class="lbl">Common gotcha</p>
+        <p><code>command=my_func()</code> with brackets calls the function immediately instead of on click. And <code>bind</code> handlers take an <code>event</code> argument while <code>command</code> callbacks do not — a frequent source of "takes 0 arguments" errors.</p></div>
+    </section>
+
+    <!-- ========================= CORE WIDGETS ========================= -->
+    <p class="band">Core widgets<span class="bandsub">Year 12 baseline · Level 2</span></p>
+
+    <!-- LABEL -->
+    <section class="widget" id="label">
+      <div class="whead"><span class="wname">Label</span><span class="badge t2">L2</span></div>
+      <p class="one-line">Shows a piece of text (or an image) to the user.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A display area for a short piece of text or an image. A Label shows information <i>to</i> the user — it does not collect anything <i>from</i> them.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>A title, a prompt beside an <code>Entry</code>, a status line, or a result after a calculation. <span class="nots">Not for input — for typing use <code>Entry</code> or <code>Text</code>; for a clickable action use <code>Button</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
         <pre><code class="language-python">import tkinter as tk
 
 window = tk.Tk()
-name_var = tk.StringVar()
+tk.Label(window, text="Kia ora!").pack()
+window.mainloop()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>text</code> — the words to show.</li><li><code>textvariable</code> — link a <code>StringVar</code> so it updates itself.</li><li><code>font</code>, <code>fg</code>, <code>bg</code>.</li><li><code>wraplength</code> — pixel width at which long text wraps.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>A Label is output-only — it does not respond to events. Change what it shows with <code>label.config(text="...")</code> or by linking a <code>StringVar</code> and calling <code>var.set(...)</code>.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>To update a Label live you must use <code>.config()</code> or a <code>StringVar</code> — reassigning the ordinary Python variable does nothing on screen. And it will not wrap long text unless you set <code>wraplength</code>.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Make a window with a Label reading <code>Clicks: 0</code> and a Button; each click increases the number shown.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./label_demo.py">label_demo.py</a></span></div>
+      <p class="nots" style="margin-top:16px;font-size:15px;max-width:62ch">No Level 3 lift: a Label has no events. Its role at Level 3 is as the output surface for a richer program — showing computed results and state.</p>
+    </section>
+
+    <!-- BUTTON -->
+    <section class="widget" id="button">
+      <div class="whead"><span class="wname">Button</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">Runs a function when clicked.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A clickable button that calls a function you write.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Any action — submit, add, calculate, open a window. <span class="nots">Not for choosing options; use <code>Radiobutton</code> or <code>Checkbutton</code> for that.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">def greet():
+    print("Hello!")
+
+tk.Button(window, text="Greet", command=greet).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>text</code> — the label on the button.</li><li><code>command</code> — the function to call (no brackets).</li><li><code>state</code> — <code>"normal"</code> or <code>"disabled"</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Use <code>command=</code> for clicks. To pass an argument, use a lambda: <code>command=lambda: choose("red")</code>. A button has no value to read.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Write <code>command=greet</code>, not <code>command=greet()</code>. In a loop, capture the loop value with a default argument: <code>lambda c=colour: choose(c)</code>, or every button sends the last value.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Make three buttons that share one handler, each showing which colour was pressed.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./button_demo.py">button_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>In a class, each button's <code>command</code> is a method — <code>command=self.save</code>, <code>command=self.add</code>. Organising handlers as methods of a class you defined is the structured, well-organised design Level 3 rewards.</p></div>
+    </section>
+
+    <!-- ENTRY -->
+    <section class="widget" id="entry">
+      <div class="whead"><span class="wname">Entry</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">A single-line box the user types into.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A single-line text box the user types into. It is the most common way a tkinter program takes input from the user.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>One line of text or a number — a name, a search term, a score. <span class="nots">For several lines use <code>Text</code>; for fixed options use <code>Combobox</code> or <code>Radiobutton</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">name_var = tk.StringVar()
 entry = tk.Entry(window, textvariable=name_var)
-entry.pack()
-window.mainloop()</code></pre>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Key options</p>
-        <ul>
-          <li><code>textvariable</code> — link a <code>StringVar</code> so you can read or set the box.</li>
-          <li><code>width</code> — width in characters.</li>
-          <li><code>show="*"</code> — hide the text, for passwords.</li>
-          <li><code>state="disabled"</code> — make it read-only.</li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Events &amp; value</p>
-        <p>Read it with <code>name_var.get()</code>, usually inside a button's command. You can also respond live by binding a key event:</p>
-        <pre><code class="language-python">entry.bind("&lt;Return&gt;", lambda event: print(name_var.get()))</code></pre>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Common gotcha</p>
-        <p><code>.get()</code> always returns a <b>string</b>, even if the user typed <code>42</code>. Do maths on it without <code>int()</code> or <code>float()</code> and you will get bugs or a crash — which is exactly why validation matters.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Practice task</p>
-        <p>Make a window with one <code>Entry</code> and one <code>Button</code>. When the button is clicked, show the typed text in a <code>Label</code>. Then extend it: if the box is empty, show a <code>messagebox</code> warning instead.</p>
-      </div>
-
-      <div class="demo">
-        <span class="runtag">▶ run</span>
-        <span>See it working in <a href="./entry_demo.py">entry_demo.py</a></span>
-      </div>
-
-      <div class="lift">
-        <p class="liftlbl">Level 3 lift</p>
-        <p>Everything above earns the "responding to GUI events" technique. To push toward Level 3 complexity, move it into a class and add validation and persistence:</p>
+entry.pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>textvariable</code> — a <code>StringVar</code> to read or set the box.</li><li><code>width</code> — width in characters.</li><li><code>show="*"</code> — hide text, for passwords.</li><li><code>state="disabled"</code> — read-only.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p>
+        <p>Read it with <code>name_var.get()</code>, usually inside a button's command. Respond live by binding a key:</p>
+        <pre><code class="language-python">entry.bind("&lt;Return&gt;", lambda event: print(name_var.get()))</code></pre></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p><code>.get()</code> always returns a <b>string</b>, even if the user typed <code>42</code>. Do maths on it without <code>int()</code> or <code>float()</code> and you get bugs or a crash — which is why validation matters.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>One <code>Entry</code> and one <code>Button</code>: clicking shows the typed text in a <code>Label</code>. Then extend it so an empty box shows a <code>messagebox</code> warning instead.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./entry_demo.py">entry_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p>
+        <p>Move it into a class and add validation and persistence:</p>
         <pre><code class="language-python">import tkinter as tk
 from tkinter import messagebox
 
@@ -318,74 +374,141 @@ class NameApp:
             return
         with open("names.txt", "a") as f:   # persistence: write to a file
             f.write(name + "\n")</code></pre>
-        <p style="margin-top:12px">That one example now shows a GUI, event handling, a class you defined, input validation, <i>and</i> writing to persistent storage — four of the named complex techniques in one place.</p>
-      </div>
+        <p style="margin-top:12px">That one example shows a GUI, event handling, a class you defined, validation, <i>and</i> writing to persistent storage — four named complex techniques together.</p></div>
     </section>
 
-    <!-- ============================ LISTBOX ============================ -->
+    <!-- TEXT -->
+    <section class="widget" id="text">
+      <div class="whead"><span class="wname">Text</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">A multi-line text box.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A box that holds many lines of text, unlike <code>Entry</code> which holds one.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Notes, descriptions, messages — anything multi-line. <span class="nots">For a single line use <code>Entry</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">textbox = tk.Text(window, height=10, width=40, wrap="word")
+textbox.pack()
+textbox.insert("1.0", "Start here.")   # "1.0" = line 1, column 0</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>height</code>, <code>width</code>, <code>wrap="word"</code>.</li><li><code>insert(index, text)</code>, <code>get(start, end)</code>, <code>delete(start, end)</code>.</li><li>Indexes are strings like <code>"1.0"</code> and the constant <code>tk.END</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Read everything with <code>textbox.get("1.0", tk.END)</code>. Bind <code>&lt;KeyRelease&gt;</code> to react as the user types — for a live word count, say.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Indexes are strings (<code>"1.0"</code> means line 1, column 0), not numbers. And <code>get("1.0", tk.END)</code> includes a trailing newline — strip it if it matters.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Show a live word count under the box that updates as the user types, plus a Clear button.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./text_demo.py">text_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Add Save and Open buttons that write the text to a file and read it back with <code>filedialog</code> — turning a notepad into a program with persistent storage.</p></div>
+    </section>
+
+    <!-- FRAME -->
+    <section class="widget" id="frame">
+      <div class="whead"><span class="wname">Frame</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">An invisible container that groups widgets.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A container with no appearance of its own that groups other widgets so you can lay a window out in tidy sections.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Organising a window into regions (a toolbar, a sidebar, a form), building a reusable component, or combining <code>pack</code> and <code>grid</code> in one window — each in its own Frame.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">left = tk.Frame(window)
+left.pack(side="left")
+tk.Button(left, text="A").pack()
+tk.Button(left, text="B").pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>bd</code> and <code>relief="solid"</code> give it a visible border.</li><li><code>padx</code>, <code>pady</code> for internal spacing.</li><li>Use <code>pack</code> or <code>grid</code> inside it.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>None — a Frame is structural. Its job is layout, not interaction.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Never mix <code>pack</code> and <code>grid</code> in the <b>same</b> container — tkinter will hang with no error. But each Frame is its own container, so you give each one the manager that fits: pack a toolbar Frame across the top, grid a form Frame's fields below. That is not a workaround — it is how the two managers are meant to be combined.</p>
+        <pre><code class="language-python">toolbar = tk.Frame(window)
+toolbar.pack(side="top", fill="x")        # toolbar: linear -> pack
+
+form = tk.Frame(window)
+form.pack(side="top")
+tk.Label(form, text="Name:").grid(row=0, column=0)   # form: rows/cols -> grid
+tk.Entry(form).grid(row=0, column=1)</code></pre></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Build a window with a packed toolbar row across the top and a gridded form below it, each in its own Frame — combining the two managers without mixing them in one container.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See <code>pack</code> and <code>grid</code> combined in <a href="./frame_demo.py">frame_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p>
+        <p>Subclass <code>Frame</code> to make a reusable component — for example a "labelled entry" you build once and drop in anywhere. Defining your own class like this is a named complex technique:</p>
+        <pre><code class="language-python">class LabelledEntry(tk.Frame):
+    def __init__(self, parent, caption):
+        super().__init__(parent)
+        tk.Label(self, text=caption).pack(side="left")
+        self.var = tk.StringVar()
+        tk.Entry(self, textvariable=self.var).pack(side="left")</code></pre></div>
+    </section>
+
+    <!-- CHECKBUTTON -->
+    <section class="widget" id="checkbutton">
+      <div class="whead"><span class="wname">Checkbutton</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">An on/off (ticked/unticked) option.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A box the user ticks or unticks, backed by a variable you read to find its state.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Independent yes/no settings where several can be on at once. <span class="nots">For one-of-many, use <code>Radiobutton</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">cheese = tk.BooleanVar()
+tk.Checkbutton(window, text="Cheese", variable=cheese).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>variable</code> — a <code>BooleanVar</code> (or <code>IntVar</code>).</li><li><code>text</code> — the option label.</li><li><code>onvalue</code> / <code>offvalue</code> to customise stored values.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Read each with <code>var.get()</code> (True/False), or pass <code>command=</code> to react the moment it is toggled.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Each Checkbutton needs its <b>own</b> variable. Share one variable across several and they all move together.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A list of toppings; a button reports which were ticked.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./checkbutton_demo.py">checkbutton_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Read all the settings into a dictionary and save them to a file so the program remembers the user's preferences next time — validation plus persistence.</p></div>
+    </section>
+
+    <!-- RADIOBUTTON -->
+    <section class="widget" id="radiobutton">
+      <div class="whead"><span class="wname">Radiobutton</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">Pick exactly one option from a group.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A set of mutually exclusive options. The trick is that every button in the group shares the <b>same</b> variable.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>A one-of-many choice with a few options. <span class="nots">With many options a <code>Combobox</code> is tidier.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">size = tk.StringVar(value="Medium")
+for label in ("Small", "Medium", "Large"):
+    tk.Radiobutton(window, text=label, variable=size, value=label).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>variable</code> — the shared variable for the group.</li><li><code>value</code> — the value this button sets (unique per button).</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Read the shared variable with <code>size.get()</code>. React on change with <code>command=</code> or <code>var.trace_add("write", ...)</code>.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Every button in the group must share one variable, each with a distinct <code>value</code> — that is exactly what makes them exclusive. Separate variables = independent buttons.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A size chooser (Small/Medium/Large) that shows the current pick in a Label.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./radiobutton_demo.py">radiobutton_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Drive program behaviour from the choice inside a class — e.g. the selected mode changes how a method processes data.</p></div>
+    </section>
+
+    <!-- COMBOBOX -->
+    <section class="widget" id="combobox">
+      <div class="whead"><span class="wname">ttk.Combobox</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">A dropdown to pick one value.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A dropdown menu (from <code>ttk</code>) the user picks one value from — the tidy alternative to a long row of Radiobuttons.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Choosing one from a longer list. <span class="nots">If the user should type freely, use <code>Entry</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">from tkinter import ttk
+
+choice = tk.StringVar()
+combo = ttk.Combobox(window, textvariable=choice,
+                     values=["DGT", "Hospitality", "MTI"], state="readonly")
+combo.pack()
+combo.current(0)</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>values</code> — the list of choices.</li><li><code>textvariable</code> — read the selection.</li><li><code>state="readonly"</code> — pick only, no typing.</li><li><code>current(i)</code> — preselect by index.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Read with <code>choice.get()</code>. React when the user picks with <code>combo.bind("&lt;&lt;ComboboxSelected&gt;&gt;", handler)</code>.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>It lives in <code>ttk</code> — <code>from tkinter import ttk</code> — not base tkinter. Without <code>state="readonly"</code> the user can type anything into it.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A subject picker that shows a message when the selection changes.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./combobox_demo.py">combobox_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Populate <code>values</code> from a data source — a list read from a file or built from records — rather than hard-coding them.</p></div>
+    </section>
+
+    <!-- LISTBOX -->
     <section class="widget" id="listbox">
-      <div class="whead">
-        <span class="wname">Listbox</span>
-        <span class="badge t2">Year 12 · L2</span>
-        <span class="badge t3">Level 3 lift</span>
-      </div>
+      <div class="whead"><span class="wname">Listbox</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
       <p class="one-line">A scrollable list of items the user can select from.</p>
-
-      <div class="block">
-        <p class="lbl">What it is</p>
-        <p>A box showing a scrollable list of items the user can select. It is backed by a collection you add to and remove from as the program runs.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">When to reach for it</p>
-        <p>Choosing one or more items from a list that changes — files, names, tasks. <span class="nots">A small fixed set of options is cleaner as <code>Radiobutton</code> or <code>Combobox</code>; free text is an <code>Entry</code>.</span></p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Minimal example</p>
-        <pre><code class="language-python">import tkinter as tk
-
-window = tk.Tk()
-listbox = tk.Listbox(window)
+      <div class="block"><p class="lbl">What it is</p><p>A box showing a scrollable list the user can select from, backed by a collection you add to and remove from as the program runs.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Choosing from a list that changes — files, names, tasks. <span class="nots">A small fixed set is cleaner as <code>Radiobutton</code> or <code>Combobox</code>; free text is an <code>Entry</code>.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">listbox = tk.Listbox(window)
 for item in ("Apples", "Kumara", "Bread"):
     listbox.insert(tk.END, item)
-listbox.pack()
-window.mainloop()</code></pre>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Key options</p>
-        <ul>
-          <li><code>selectmode</code> — <code>"single"</code> (default), <code>"extended"</code>, or <code>"multiple"</code>.</li>
-          <li><code>height</code> — number of rows shown.</li>
-          <li><code>insert(tk.END, item)</code> and <code>delete(index)</code> — add to / remove from the list.</li>
-          <li><code>get(0, tk.END)</code> — read the whole list back as a tuple.</li>
-        </ul>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Events &amp; value</p>
-        <p>Find what is selected with <code>curselection()</code>, which returns the selected indices; then <code>listbox.get(index)</code> gives the item. React to the user changing the selection by binding the virtual event <code>&lt;&lt;ListboxSelect&gt;&gt;</code>. Adding and removing items is "modifying data stored in a collection" — itself an advanced technique.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Common gotcha</p>
-        <p><code>curselection()</code> returns a <b>tuple of indices, which can be empty</b> when nothing is selected. Index into it without checking and the program crashes. Also: a Listbox stores display <i>strings</i>, not your objects — if items carry more data, keep a parallel Python list.</p>
-      </div>
-
-      <div class="block">
-        <p class="lbl">Practice task</p>
-        <p>Build a list with an <code>Entry</code> and an Add button (reject empty or duplicate items) and a Remove button for the selected item. Show the current selection in a <code>Label</code>.</p>
-      </div>
-
-      <div class="demo">
-        <span class="runtag">▶ run</span>
-        <span>See it working in <a href="./listbox_demo.py">listbox_demo.py</a></span>
-      </div>
-
-      <div class="lift">
-        <p class="liftlbl">Level 3 lift</p>
-        <p>Move the list into a class that loads its items from a file when the app starts and saves on every change:</p>
+listbox.pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>selectmode</code> — <code>"single"</code>, <code>"extended"</code>, or <code>"multiple"</code>.</li><li><code>height</code> — rows shown.</li><li><code>insert(tk.END, item)</code> / <code>delete(index)</code>.</li><li><code>get(0, tk.END)</code> — read the whole list.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Find the selection with <code>curselection()</code> (returns indices), then <code>listbox.get(index)</code>. React with <code>&lt;&lt;ListboxSelect&gt;&gt;</code>. Adding and removing items is "modifying data in a collection" — itself an advanced technique.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p><code>curselection()</code> returns a <b>tuple of indices that can be empty</b>. Index into it without checking and the program crashes. A Listbox stores display strings, not your objects — keep a parallel list if items carry more data.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A list with an <code>Entry</code> + Add (reject empty/duplicate) and a Remove button; show the selection in a Label.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./listbox_demo.py">listbox_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p>
+        <p>Move the list into a class that loads items from a file at startup and saves on every change:</p>
         <pre><code class="language-python">class TodoApp:
     FILE = "todo.txt"
 
@@ -400,20 +523,229 @@ window.mainloop()</code></pre>
                 for line in f:
                     self.listbox.insert(tk.END, line.strip())
         except FileNotFoundError:
-            pass                             # first run: no file yet
-
-    def save(self):
-        with open(self.FILE, "w") as f:
-            for item in self.listbox.get(0, tk.END):
-                f.write(item + "\n")</code></pre>
-        <p style="margin-top:12px">A GUI, a class you defined, persistent storage, and collection handling — several complex techniques working together in one small program.</p>
-      </div>
+            pass                             # first run: no file yet</code></pre>
+        <p style="margin-top:12px">A GUI, a class you defined, persistent storage, and collection handling — several complex techniques in one small program.</p></div>
     </section>
+
+    <!-- SCALE / SPINBOX -->
+    <section class="widget" id="scale">
+      <div class="whead"><span class="wname">Scale / Spinbox</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">Enter a number within a range.</p>
+      <div class="block"><p class="lbl">What it is</p><p>Two ways to enter a bounded number: a <code>Scale</code> is a slider; a <code>Spinbox</code> is a box with up/down arrows.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Bounded numeric input — volume, quantity, difficulty. <span class="nots">For free numbers use an <code>Entry</code> with validation.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">tk.Scale(window, from_=0, to=100, orient="horizontal").pack()
+
+qty = tk.IntVar(value=1)
+tk.Spinbox(window, from_=1, to=10, textvariable=qty).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>from_</code>, <code>to</code> — the range.</li><li><code>orient</code> — <code>"horizontal"</code> / <code>"vertical"</code> (Scale).</li><li><code>command</code> — Scale callback (receives the value).</li><li><code>textvariable</code> — an <code>IntVar</code> for the Spinbox.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>The <code>Scale</code> <code>command</code> callback receives the value as a <b>string</b>. The <code>Spinbox</code> with an <code>IntVar</code> gives you an int from <code>get()</code>.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>The Scale callback value is a string like <code>"37.0"</code> — convert it with <code>int(float(value))</code> before doing maths.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A volume slider whose number shows in a Label, plus a quantity Spinbox.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./scale_spinbox_demo.py">scale_spinbox_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Recompute and update the interface live as the value changes (e.g. a price total), clamping and validating the input so the program stays robust.</p></div>
+    </section>
+
+    <!-- MESSAGEBOX -->
+    <section class="widget" id="messagebox">
+      <div class="whead"><span class="wname">messagebox</span><span class="badge t2">L2</span></div>
+      <p class="one-line">Pop-up info, warnings, and yes/no questions.</p>
+      <div class="block"><p class="lbl">What it is</p><p>Ready-made dialogs from <code>tkinter.messagebox</code> for telling the user something or asking a simple question.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Reporting a validation error, confirming a destructive action, or showing a result.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">from tkinter import messagebox
+
+messagebox.showwarning("Oops", "Please enter a name.")
+if messagebox.askyesno("Delete", "Are you sure?"):
+    ...   # only runs if the user clicked Yes</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>showinfo</code>, <code>showwarning</code>, <code>showerror</code>.</li><li><code>askyesno</code> / <code>askokcancel</code> — return True/False.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>The <code>ask*</code> functions return a value (True/False) you branch on.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>It is a set of <i>functions</i>, not a widget you place — and you must import it: <code>from tkinter import messagebox</code>.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Add a "confirm before clearing" check to the Text or Listbox demo.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it (with filedialog) in <a href="./dialogs_demo.py">dialogs_demo.py</a></span></div>
+      <div class="counts"><b>Why it matters at Level 3:</b> messagebox is how you handle the invalid or empty case cleanly — it is the visible sign that a program is robust, which Level 3 expects.</div>
+    </section>
+
+    <!-- FILEDIALOG -->
+    <section class="widget" id="filedialog">
+      <div class="whead"><span class="wname">filedialog</span><span class="badge t2">L2</span><span class="badge t3">Level 3 lift</span></div>
+      <p class="one-line">Let the user choose a file to open or save.</p>
+      <div class="block"><p class="lbl">What it is</p><p>Dialogs from <code>tkinter.filedialog</code> that return the path the user picked — the GUI side of saving and loading.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Opening or saving the user's own files, instead of always using a fixed filename.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">from tkinter import filedialog
+
+path = filedialog.asksaveasfilename(defaultextension=".txt")
+if path:                                  # "" if the user cancelled
+    with open(path, "w") as f:
+        f.write("Saved from my program")</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>askopenfilename(...)</code> — choose a file to open.</li><li><code>asksaveasfilename(defaultextension=, filetypes=)</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Each function returns a path string, or <code>""</code> if the user cancels.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Always check for the empty string (Cancel) before opening the path, or the program crashes when the user backs out.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Add Open and Save to the Text demo so it loads and stores a <code>.txt</code> file.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it (with messagebox) in <a href="./dialogs_demo.py">dialogs_demo.py</a></span></div>
+      <div class="lift"><p class="liftlbl">Level 3 lift</p><p>Pair <code>filedialog</code> with <code>open()</code> inside a class to read and write the user's files — this is "reading from / writing to persistent storage", a named complex technique, and the natural partner to nearly every Level 3 project.</p></div>
+    </section>
+
+    <!-- ========================= YEAR 13 ========================= -->
+    <p class="band">Year 13 widgets<span class="bandsub">complexity lift · Level 3</span></p>
+
+    <!-- TOPLEVEL -->
+    <section class="widget" id="toplevel">
+      <div class="whead"><span class="wname">Toplevel</span><span class="badge t3">L3</span></div>
+      <p class="one-line">A second window.</p>
+      <div class="block"><p class="lbl">What it is</p><p>An extra window on top of the main one — a settings screen, an "add item" dialog, an about box.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Multi-screen programs, or a focused sub-task that deserves its own window.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">def open_settings():
+    win = tk.Toplevel(window)
+    win.title("Settings")
+    tk.Label(win, text="Settings go here").pack()
+
+tk.Button(window, text="Settings...", command=open_settings).pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>tk.Toplevel(parent)</code> — create the window.</li><li><code>transient(parent)</code> — keep it above its parent.</li><li><code>grab_set()</code> — make it modal (blocks the main window until closed).</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Build widgets in it like any window. Pass data back by updating the parent window from inside the Toplevel's handlers.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Do not call <code>tk.Tk()</code> for a second window — that is only for the one main window. Extra windows are always <code>Toplevel</code>.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A settings window that sets the user's name back on the main window.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./toplevel_demo.py">toplevel_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> a multi-screen system — one of the Level 3 complexity expectations.</div>
+    </section>
+
+    <!-- MENU -->
+    <section class="widget" id="menu">
+      <div class="whead"><span class="wname">Menu</span><span class="badge t3">L3</span></div>
+      <p class="one-line">The menu bar across the top of a window.</p>
+      <div class="block"><p class="lbl">What it is</p><p>Drop-down menus attached to the window — File, Edit, Help, and so on.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Organising the commands of a larger program so the window stays uncluttered.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">menubar = tk.Menu(window)
+file_menu = tk.Menu(menubar, tearoff=0)
+file_menu.add_command(label="Exit", command=window.quit)
+menubar.add_cascade(label="File", menu=file_menu)
+window.config(menu=menubar)</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>add_command(label=, command=)</code>, <code>add_separator()</code>.</li><li><code>add_cascade(label=, menu=)</code> attaches a drop-down.</li><li><code>tearoff=0</code> removes the dotted tear-off line.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Each menu item has a <code>command=</code>, exactly like a Button.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Build the bar, build each drop-down, add the cascades, <i>then</i> <code>window.config(menu=bar)</code>. Forgetting the last step means no menu appears.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A File menu with New and Exit, and a Help menu with About.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./menu_demo.py">menu_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> part of a structured, multi-feature interface.</div>
+    </section>
+
+    <!-- TREEVIEW -->
+    <section class="widget" id="treeview">
+      <div class="whead"><span class="wname">ttk.Treeview</span><span class="badge t3">L3</span></div>
+      <p class="one-line">A multi-column table of records.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A widget (from <code>ttk</code>) that shows rows with several columns — where a <code>Listbox</code> shows only one.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Displaying records or tabular data — a list of students with name, year, and grade.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">from tkinter import ttk
+
+tree = ttk.Treeview(window, columns=("name", "year"), show="headings")
+tree.heading("name", text="Name")
+tree.heading("year", text="Year")
+tree.insert("", tk.END, values=("Aroha", 12))
+tree.pack()</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>columns=</code>, <code>show="headings"</code>.</li><li><code>heading(col, text=)</code>, <code>column(col, width=, anchor=)</code>.</li><li><code>insert("", tk.END, values=(...))</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p><code>selection()</code> returns the selected row ids (can be empty); <code>tree.item(id, "values")</code> reads a row. React with <code>&lt;&lt;TreeviewSelect&gt;&gt;</code>.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>By default an empty first column appears — use <code>show="headings"</code> to hide it. And <code>selection()</code> can be empty, so check before indexing.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A table of student records with a readout of the selected row.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./treeview_demo.py">treeview_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> displaying structured data — supports the "complex data structures" complex technique.</div>
+    </section>
+
+    <!-- SCROLLBAR -->
+    <section class="widget" id="scrollbar">
+      <div class="whead"><span class="wname">Scrollbar</span><span class="badge t3">L3</span></div>
+      <p class="one-line">Scroll a widget whose contents overflow.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A scrollbar wired to a <code>Listbox</code>, <code>Text</code>, <code>Treeview</code>, or <code>Canvas</code> so the user can scroll through more content than fits.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Any list or text area that can grow past the size of its box.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">scrollbar = tk.Scrollbar(frame, orient="vertical")
+listbox = tk.Listbox(frame, yscrollcommand=scrollbar.set)   # list -> scrollbar
+scrollbar.config(command=listbox.yview)                     # scrollbar -> list
+scrollbar.pack(side="right", fill="y")
+listbox.pack(side="left", fill="both", expand=True)</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>orient="vertical"</code> / <code>"horizontal"</code>.</li><li>Wire <b>both</b> ways: <code>yscrollcommand=sb.set</code> and <code>command=widget.yview</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Handled entirely by the two-way wiring — there is nothing to read.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>It must be wired in <b>both</b> directions. Wire only one and the scrollbar looks right but does nothing.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A 50-item Listbox with a working vertical scrollbar.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./scrollbar_demo.py">scrollbar_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> part of a usable, refined interface.</div>
+    </section>
+
+    <!-- NOTEBOOK -->
+    <section class="widget" id="notebook">
+      <div class="whead"><span class="wname">ttk.Notebook</span><span class="badge t3">L3</span></div>
+      <p class="one-line">A tabbed interface.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A widget (from <code>ttk</code>) that gives you tabs. Each tab is a Frame you fill with its own widgets.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Organising a multi-section program in one window — a tidy alternative to several <code>Toplevel</code> windows.</p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">from tkinter import ttk
+
+notebook = ttk.Notebook(window)
+home = ttk.Frame(notebook)
+tk.Label(home, text="Home tab").pack()
+notebook.add(home, text="Home")
+notebook.pack(fill="both", expand=True)</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>ttk.Notebook(parent)</code>.</li><li><code>add(frame, text="...")</code> adds a tab.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Each tab is just a Frame. React to tab changes with <code>&lt;&lt;NotebookTabChanged&gt;&gt;</code> if you need to.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p>Build and fill each Frame <i>before</i> you <code>add()</code> it. Tabs are Frames, not separate windows.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>A window with Home, Settings, and About tabs.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./notebook_demo.py">notebook_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> a structured, multi-section interface.</div>
+    </section>
+
+    <!-- CANVAS -->
+    <section class="widget" id="canvas">
+      <div class="whead"><span class="wname">Canvas</span><span class="badge t3">L3</span></div>
+      <p class="one-line">A blank area for drawing shapes, lines, and text.</p>
+      <div class="block"><p class="lbl">What it is</p><p>A drawing surface where you place shapes, lines, and text using pixel coordinates — for visual output a Label cannot give, like a diagram or a simple chart.</p></div>
+      <div class="block"><p class="lbl">When to reach for it</p><p>Diagrams, simple charts, plotting positions, or displaying drawn graphics. <span class="nots">This guide treats Canvas for display, not game mechanics.</span></p></div>
+      <div class="block"><p class="lbl">Minimal example</p>
+        <pre><code class="language-python">canvas = tk.Canvas(window, width=300, height=200, bg="white")
+canvas.pack()
+canvas.create_rectangle(20, 20, 120, 120, fill="#1D9E75")
+canvas.create_text(150, 150, text="Hello")</code></pre></div>
+      <div class="block"><p class="lbl">Key options</p>
+        <ul><li><code>width</code>, <code>height</code>, <code>bg</code>.</li><li><code>create_line</code>, <code>create_rectangle</code>, <code>create_oval</code>, <code>create_text</code>.</li></ul></div>
+      <div class="block"><p class="lbl">Events &amp; value</p><p>Coordinates start at the top-left: x grows right, <b>y grows down</b>. You build a drawing by adding items at computed positions.</p></div>
+      <div class="block"><p class="lbl">Common gotcha</p><p><code>y</code> increases <i>downward</i>, so <code>y=0</code> is the top of the canvas — a common surprise when positioning items.</p></div>
+      <div class="block"><p class="lbl">Practice task</p><p>Draw a simple bar chart from a list of numbers.</p></div>
+      <div class="demo"><span class="runtag">▶ run</span><span>See it in <a href="./canvas_demo.py">canvas_demo.py</a></span></div>
+      <div class="counts"><b>Counts as:</b> processing data into visual output — non-trivial work beyond plain widgets.</div>
+    </section>
+
+    <!-- ========================= CAPSTONE ========================= -->
+    <p class="band">Putting it together<span class="bandsub">the bridge into Level 3 complexity</span></p>
+
+    <div class="capstone" id="capstone">
+      <h2>Capstone: a student record manager</h2>
+      <p class="one-line" style="margin-bottom:14px">One small program that uses many of these widgets the way a real project does.</p>
+      <p style="max-width:62ch">The capstone is a class-based program that lets you add a student's name, year, and grade; shows the records in a table; and saves everything to a file so it is still there next time the program opens. It is the destination the earlier pages build toward — the point where separate widgets become a complete, complex outcome.</p>
+      <p style="max-width:62ch;margin-top:14px"><b>What it pulls together:</b></p>
+      <ul>
+        <li>a GUI built from <code>Entry</code>, <code>Combobox</code>, <code>Treeview</code>, <code>Button</code>, and <code>Menu</code>;</li>
+        <li>a class you define, with each button calling one of its methods;</li>
+        <li>reading from and writing to a file (JSON) — persistent storage;</li>
+        <li>modifying a collection of records as the user adds and removes them;</li>
+        <li>input validation and handling the empty / invalid case.</li>
+      </ul>
+      <p style="max-width:62ch;margin-top:14px">That is several of the named complex techniques of AS91906 working together — which is exactly what "complex", as opposed to "working", means at Level 3.</p>
+      <div class="demo" style="margin-top:16px"><span class="runtag">▶ run</span><span>Read and run <a href="./capstone_app.py">capstone_app.py</a></span></div>
+    </div>
 
   </main>
 </div>
 
-<footer>tkinter widget reference · draft pattern sample · built for review</footer>
+<footer>tkinter widget reference · Year 12 &amp; 13 Digital Technology · built for GitHub Pages</footer>
 
 <script>hljs.highlightAll();</script>
 </body>

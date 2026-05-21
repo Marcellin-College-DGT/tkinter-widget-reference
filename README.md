@@ -6,11 +6,23 @@ it maps onto the NCEA achievement standards (AS91896 at Level 2, AS91906 at Leve
 
 ## What's here
 
-- `index.html` — the reference page (this is what students read).
-- `label_demo.py`, `entry_demo.py`, `listbox_demo.py` — runnable demos, one per
-  widget. Each is standalone and heavily commented. The Entry and Listbox demos
-  include both a Level 2 version (runs by default) and a Level 3 class-based
-  version with file persistence, switchable by one line at the bottom of the file.
+- `index.html` — the reference page students read (publish this with GitHub Pages).
+- One runnable demo per widget. Each is standalone and commented. Demos for
+  interactive widgets include both a Level 2 version (runs by default) and a
+  Level 3 class-based version with file persistence, switchable by one line at
+  the bottom of the file.
+- `capstone_app.py` — a complete class-based program combining many widgets with
+  validation and JSON persistence; the bridge into Level 3 complexity.
+
+### Layout of the guide
+
+- **Foundations** — `foundations_demo.py` (the window, grid layout, control
+  variables, event binding).
+- **Core widgets (Level 2)** — Label, Button, Entry, Text, Frame, Checkbutton,
+  Radiobutton, Combobox, Listbox, Scale/Spinbox, messagebox, filedialog.
+- **Year 13 widgets (Level 3)** — Toplevel, Menu, Treeview, Scrollbar, Notebook,
+  Canvas.
+- **Capstone** — `capstone_app.py`.
 
 ## Running the demos
 
@@ -31,7 +43,8 @@ python entry_demo.py
 
 Edit `index.html`, commit, and the live page updates automatically.
 
-## Status
+## One thing to update
 
-This is the pattern draft — three widgets (Label, Entry, Listbox) — built for review
-before the full widget set is added.
+The intro paragraph of `index.html` has a placeholder repo link
+(`github.com/your-school/...`). Swap it for your real repo URL once it exists.
+The per-widget demo links are already relative, so they work as soon as you push.
