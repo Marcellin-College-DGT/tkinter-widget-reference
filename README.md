@@ -4,6 +4,8 @@ A reference for Year 12 & 13 Digital Technology ākonga, covering the tkinter
 widgets used to build a Python GUI — what each one is for, how to use it, and how
 it maps onto the NCEA achievement standards (AS91896 at Level 2, AS91906 at Level 3).
 
+https://marcellin-college-dgt.github.io/tkinter-widget-reference/
+
 ## What's here
 
 - `index.html` — the reference page students read (publish this with GitHub Pages).
